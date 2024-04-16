@@ -1,7 +1,4 @@
-/*
-    Parte da soluÁ„o da quest„o 2
-    Autor: Gabriel da Silva
-*/
+
 
 #include <iostream>
 #include <clocale>
@@ -12,7 +9,6 @@ using namespace std;
 struct TItem{
     int chave;
     string valor;
-    //... demais campos necess·rios
 };
 
 struct TCelula{
@@ -23,16 +19,16 @@ struct TCelula{
 struct TListaP{
     TCelula *primeiro;
     TCelula *ultimo;
-    int qtdeItens; // criado para armazenar a quantidade de itens e n„o precisar
+    int qtdeItens; // criado para armazenar a quantidade de itens e n√£o precisar
                     // percorrer a lista para saber este dado
 };
 
 
-// OPERA«’ES B¡SICAS
+// OPERA√á√ïES B√ÅSICAS
 
 void criarLPVazia(TListaP &lp){
-    lp.primeiro = new TCelula;      // criei uma NOVA cÈlula e chamei-a de PRIMEIRO
-    lp.ultimo = lp.primeiro;        // atribuÌ o mesmo endereÁo de primeiro para ULTIMO
+    lp.primeiro = new TCelula;      // criei uma NOVA c√©lula e chamei-a de PRIMEIRO
+    lp.ultimo = lp.primeiro;        // atribu√≠ o mesmo endere√ßo de primeiro para ULTIMO
     lp.primeiro->proximo = NULL;
     lp.qtdeItens = 0;
 }
@@ -51,10 +47,10 @@ bool estaVaziaLP(TListaP lp){
 
 void mostrar(TListaP lp){
 
-    //celAux = lp.primeiro; // comeÁa como ponto de acesso, logo, n„o tem item v·lido
+    //celAux = lp.primeiro; // come√ßa como ponto de acesso, logo, n√£o tem item v√°lido
 
     TCelula *celAux;
-    celAux = lp.primeiro->proximo; // comeÁa como a primeira cÈlula v·lida, ie, que tem item v·lido
+    celAux = lp.primeiro->proximo; // come√ßa como a primeira c√©lula v√°lida, ie, que tem item v√°lido
 
     cout << "=== MOSTRANDO A LISTA === "<< endl;
 
@@ -77,18 +73,18 @@ void mostrar(TListaP lp){
 }
 
 
-// QUALQUER OPERA«√O SOBRE UMA C…LULA (NEW OU DELETE) DEVE SER FEITA A PARTIR
-// DA C…LULA ANTERIOR. POR ISSO, A IMPORT¬NCIA DE UMA FUN«√O DE RETORNA O ENDERE«O
-// DESTA C…LULA ANTERIOR AO CRIT…RIO ESTABELECIDO NA BUSCA PELA CHAVE OU OUTRO CAMPO.
+// QUALQUER OPERA√á√ÉO SOBRE UMA C√âLULA (NEW OU DELETE) DEVE SER FEITA A PARTIR
+// DA C√âLULA ANTERIOR. POR ISSO, A IMPORT√ÇNCIA DE UMA FUN√á√ÉO DE RETORNA O ENDERE√áO
+// DESTA C√âLULA ANTERIOR AO CRIT√âRIO ESTABELECIDO NA BUSCA PELA CHAVE OU OUTRO CAMPO.
 
-// Esta funÁ„o ser· usada pelo procedimento retirar!
+// Esta fun√ß√£o ser√° usada pelo procedimento retirar!
 TCelula *pegaAnterior(TListaP lp, int chaveBusca){
 
     TCelula *celAux;
     bool achou = false;
 
-    celAux = lp.primeiro;   // n„o comeÁamos pela cÈlula v·lida (COM CONTE⁄DO)
-                            // mas sim pela cabeÁa (PONTO DE ACESSO)
+    celAux = lp.primeiro;   // n√£o come√ßamos pela c√©lula v√°lida (COM CONTE√öDO)
+                            // mas sim pela cabe√ßa (PONTO DE ACESSO)
 
     cout << "=== PROCURANDO ITEM NA LISTA === "<< endl;
     while (celAux->proximo != NULL){
@@ -107,14 +103,14 @@ void retirarPorChave(TListaP &lp, int chaveBusca){
     TCelula *anterior = pegaAnterior(lp,chaveBusca); //anterior
 
     if (anterior == NULL){
-        cout << "A chave n„o foi encontrada. Nenhuma cÈlula a retirar." << endl;
+        cout << "A chave n√£o foi encontrada. Nenhuma c√©lula a retirar." << endl;
     }
     else{
         TCelula *celAlvo; //alvo
 
         celAlvo = anterior->proximo;
         anterior->proximo = celAlvo->proximo;
-        // sÛ para mostrar os dados da cÈlula a ser excluÌda!!!
+        // s√≥ para mostrar os dados da c√©lula a ser exclu√≠da!!!
 
         cout << "End.Mem.Celula Anterior: " << anterior << endl;
         cout << "   Chave:   " << anterior->item.chave << endl;
@@ -125,18 +121,18 @@ void retirarPorChave(TListaP &lp, int chaveBusca){
         cout << "   Chave:   " << celAlvo->item.chave << endl;
         cout << "   Valor:   " << celAlvo->item.valor << endl;
         cout << "   Proximo: " << celAlvo->proximo << endl;
-        // desalocando a memÛria reservada pela cÈlula alvo
+        // desalocando a mem√≥ria reservada pela c√©lula alvo
         delete(celAlvo);
         lp.qtdeItens--;
     }
 }
 
-//  OPERA«’ES ESPECÕFICAS
+//  OPERA√á√ïES ESPEC√çFICAS
 
 void concatenar2Listas(TListaP l1, TListaP l2, TListaP &l3){
 
     if (estaVaziaLP(l1) || estaVaziaLP(l2)){
-        cout << "N„o È possÌvel concatenar!" << endl;
+        cout << "N√£o √© poss√≠vel concatenar!" << endl;
     }
     else{
         //criarLPVazia(l3);
@@ -159,21 +155,21 @@ void concatenar2Listas(TListaP l1, TListaP l2, TListaP &l3){
 }
 
 void intercalar2LP(TListaP l1, TListaP l2, TListaP &l4){
-    // verificar se est„o vazias
+    // verificar se est√£o vazias
     if (!estaVaziaLP(l1) && !estaVaziaLP(l2)){
-        // verificar se tÍm o mesmo tamanho
+        // verificar se t√™m o mesmo tamanho
         if (l1.qtdeItens == l2.qtdeItens){
-        // se sim, em um ˙nico WHILE
+        // se sim, em um √∫nico WHILE
             TCelula *celAux1, *celAux2;
             celAux1 = l1.primeiro;
             celAux2 = l2.primeiro;
 
             while (celAux1->proximo != NULL){
-                // pega uma cÈlula de l1 e insere em l4
+                // pega uma c√©lula de l1 e insere em l4
                 inserirLP(l4, celAux1->proximo->item);
-                // pega uma cÈlula de l2 e insere em l4
+                // pega uma c√©lula de l2 e insere em l4
                 inserirLP(l4, celAux2->proximo->item);
-                // atualiza as cÈlulas auxiliares
+                // atualiza as c√©lulas auxiliares
                 celAux1 = celAux1->proximo;
                 celAux2 = celAux2->proximo;
             }
@@ -188,7 +184,7 @@ int main(){
 
     setlocale(LC_ALL,"Portuguese");
 
-    TListaP lista1, lista2, lista3, lista4; // instanciaÁ„o
+    TListaP lista1, lista2, lista3, lista4; // instancia√ß√£o
     //preparando as listas para uso!
     criarLPVazia(lista1);
     criarLPVazia(lista2);
@@ -196,10 +192,10 @@ int main(){
     criarLPVazia(lista4);
 
 
-    TItem itemTemp; // criando uma vari·vel do tipo item para receber os dados do item, antes de inserir na lista
-                    // estes valores podem ser atribuÌdos ou coletados pela digitaÁ„o. Farei os 2 exemplos
+    TItem itemTemp; // criando uma vari√°vel do tipo item para receber os dados do item, antes de inserir na lista
+                    // estes valores podem ser atribu√≠dos ou coletados pela digita√ß√£o. Farei os 2 exemplos
 
-    // inserindo um item manualmente por atribuiÁ„o
+    // inserindo um item manualmente por atribui√ß√£o
     itemTemp.chave = 5;
     itemTemp.valor = "Gabriel";
     inserirLP(lista1,itemTemp);
@@ -218,7 +214,7 @@ int main(){
 
     mostrar(lista1);
 
-       // inserindo um item manualmente por atribuiÁ„o
+       // inserindo um item manualmente por atribui√ß√£o
     itemTemp.chave = 5;
     itemTemp.valor = "Gabriel";
     inserirLP(lista2,itemTemp);
